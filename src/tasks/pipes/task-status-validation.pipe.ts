@@ -10,10 +10,19 @@ export class TaskStatusValidationPipe implements PipeTransform {
   ];
 
   transform(value: any) {
+    if (!value) {
+    throw new BadRequestException({ 
+      statusCode: 400,
+      message: "Provided status undefined must be typeof String",
+      error: "Bad Request"
+      })
+    }
+
     if (typeof value !== 'string') {
       throw new BadRequestException(`Provided status ${value} must be typeof String`)
     }
     const transformedValue = value.toUpperCase()
+    
     if (!this.isStatusValid(transformedValue)) {
       throw new BadRequestException(`Provided status ${value} is invalid`)
     }

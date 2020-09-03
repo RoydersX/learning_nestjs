@@ -1,13 +1,11 @@
 import { TaskStatus } from "../task-status.enum";
-import { IsOptional, IsString, IsIn } from "class-validator";
+import { IsOptional, IsNotEmpty } from "class-validator";
 
 export class GetFilterDto {
 
-  @IsOptional()
-  @IsIn([TaskStatus.OPEN, TaskStatus.DONE, TaskStatus.IN_PROGRESS])  
   status: TaskStatus;
 
   @IsOptional()
-  @IsString()
+  @IsNotEmpty()
   search: string;
 }
