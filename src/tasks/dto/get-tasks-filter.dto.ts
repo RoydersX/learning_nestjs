@@ -1,8 +1,11 @@
 import { TaskStatus } from "../task-status.enum";
-import { IsOptional, IsNotEmpty } from "class-validator";
+import { IsOptional, IsNotEmpty, IsIn } from "class-validator";
+
 
 export class GetFilterDto {
 
+  @IsOptional()
+  @IsIn(Object.values(TaskStatus))
   status: TaskStatus;
 
   @IsOptional()
