@@ -4,11 +4,13 @@ import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { postgress } from './config/database';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(postgress),
     TasksModule,
-    TypeOrmModule.forRoot(postgress)
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
